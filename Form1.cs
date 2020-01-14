@@ -43,6 +43,8 @@ namespace LabLappolainen3
                 Square.X = e.X - SquareX3;
                 Square.Y = e.Y - SquareY3;
                 pictureBox1.Invalidate();
+                
+                
             }
 
             if((label1.Location.X < Square.X + Square.Width)&&(label1.Location.X > Square.X))
@@ -50,7 +52,7 @@ namespace LabLappolainen3
                 if((label1.Location.Y < Square.Y + Square.Height)&&(label1.Location.Y > Square.Y))
                 {
                     label3.Text = "Cиний квадрат";
-                    label2.Text = "Квадрат";
+                    
                     label1.Text = "Синий";
                 }
             }
@@ -59,7 +61,7 @@ namespace LabLappolainen3
                 if ((label1.Location.Y < Rectangle.Y + Rectangle.Height) && (label1.Location.Y > Rectangle.Y))
                 {
                     label3.Text = "Жёлтый прямоугольник";
-                    label2.Text = "Прямоугольник";
+                    
                     label1.Text = "Жёлтый";
                 }
             }
@@ -68,7 +70,7 @@ namespace LabLappolainen3
                 if ((label1.Location.Y < Circle.Y + Circle.Height) && (label1.Location.Y > Circle.Y))
                 {
                     label3.Text = "Красный круг";
-                    label2.Text = "Круг";
+                    
                     label1.Text = "Красный";
                 }
             }
@@ -90,10 +92,54 @@ namespace LabLappolainen3
                         Y = Circle.Y;
                         dX = CircleX2;
                         dY = CircleY2;
-                        Circle.X = Square.X;
-                        Circle.X = Square.X;
-                        CircleX2 = SquareX3;
-                        CircleY2 = SquareY3;
+                        Circle.X = Rectangle.X;
+                        Circle.Y = Rectangle.Y;
+                        CircleX2 = RectangleX;
+                        CircleY2 = RectangleY;
+
+                        Rectangle.X = X;
+                        Rectangle.Y = Y;
+                        RectangleX = dX;
+                        RectangleY = dY;
+                    }
+                }
+            }
+            if (LastClicked == 3)
+            {
+                if((label2.Location.X < Square.X + Square.Width)&&(label2.Location.X > Square.X))
+                {
+                    if((label2.Location.Y < Square.Y + Square.Height)&&(label2.Location.Y > Square.Y))
+                    {
+                        X = Square.X;
+                        Y = Square.Y;
+                        dX = SquareX3;
+                        dY = SquareY3;
+                        Square.X = Circle.X;
+                        Square.Y = Circle.Y;
+                        SquareX3 = CircleX2;
+                        SquareY3 = CircleY2;
+
+                        Circle.X = X;
+                        Circle.Y = Y;
+                        CircleX2 = dX;
+                        CircleY2 = dY;
+                    }
+                }
+            }
+            if (LastClicked == 1)
+            {
+                if ((label2.Location.X < Rectangle.X + Rectangle.Width) && (label2.Location.X > Rectangle.X))
+                {
+                    if ((label2.Location.Y < Rectangle.Y + Rectangle.Height) && (label2.Location.Y > Rectangle.Y))
+                    {
+                        X = Rectangle.X;
+                        Y = Rectangle.Y;
+                        dX = RectangleX;
+                        dY = RectangleY;
+                        Rectangle.X = Square.X;
+                        Rectangle.Y = Square.Y;
+                        RectangleX = SquareX3;
+                        RectangleY = SquareY3;
 
                         Square.X = X;
                         Square.Y = Y;
@@ -125,9 +171,10 @@ namespace LabLappolainen3
                 if ((e.Y < Rectangle.Y + Rectangle.Height)&&(e.Y > Rectangle.Y))
                 {
                     RectangleClicked = true;
-
+                    
                     RectangleX = e.X - Rectangle.X;
                     RectangleY = e.Y - Rectangle.Y;
+                    LastClicked = 1;
                 }
             }
             if ((e.X < Circle.X + Circle.Width) && (e.X > Circle.X))
@@ -138,6 +185,7 @@ namespace LabLappolainen3
 
                     CircleX2 = e.X - Circle.X;
                     CircleY2 = e.Y - Circle.Y;
+                    LastClicked = 2;
                 }
             }
             if ((e.X < Square.X + Square.Width) && (e.X > Square.X))
@@ -148,6 +196,7 @@ namespace LabLappolainen3
 
                     SquareX3 = e.X - Square.X;
                     SquareY3 = e.Y - Square.Y;
+                    LastClicked = 3;
                 }
             }
         }
