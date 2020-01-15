@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LabLappolainen3
 {
     public partial class Form1 : Form
     {
-            int X, Y, dX, dY;
-            int LastClicked = 0;
-            bool RectangleClicked, CircleClicked, SquareClicked = false;
-            int RectangleX, CircleX2, SquareX3, RectangleY, CircleY2, SquareY3 = 0;
+        /*int X, Y, dX, dY;
+        int LastClicked = 0*/
+        bool RectangleClicked, CircleClicked, SquareClicked = false;
+        int RectangleX, CircleX2, SquareX3, RectangleY, CircleY2, SquareY3 = 0;
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -43,37 +37,36 @@ namespace LabLappolainen3
                 Square.X = e.X - SquareX3;
                 Square.Y = e.Y - SquareY3;
                 pictureBox1.Invalidate();
-                
-                
             }
 
-            if((label1.Location.X < Square.X + Square.Width)&&(label1.Location.X > Square.X))
+            if ((label2.Location.X < Square.X + Square.Width) && (label2.Location.X > Square.X))
             {
-                if((label1.Location.Y < Square.Y + Square.Height)&&(label1.Location.Y > Square.Y))
+                if ((label2.Location.Y < Square.Y + Square.Height) && (label2.Location.Y > Square.Y))
                 {
-                    label3.Text = "Cиний квадрат";
-                    
-                    label1.Text = "Синий";
+                    label5.Text = "Это квадрат";
+                    SquareClicked = false;
                 }
             }
-            if ((label1.Location.X < Rectangle.X + Rectangle.Width) && (label1.Location.X > Rectangle.X))
+            if ((label3.Location.X < Rectangle.X + Rectangle.Width) && (label3.Location.X > Rectangle.X))
             {
-                if ((label1.Location.Y < Rectangle.Y + Rectangle.Height) && (label1.Location.Y > Rectangle.Y))
+                if ((label3.Location.Y < Rectangle.Y + Rectangle.Height) && (label3.Location.Y > Rectangle.Y))
                 {
-                    label3.Text = "Жёлтый прямоугольник";
-                    
-                    label1.Text = "Жёлтый";
+                    label5.Text = "Это прямоугольник";
+                    RectangleClicked = false;
                 }
             }
             if ((label1.Location.X < Circle.X + Circle.Width) && (label1.Location.X > Circle.X))
             {
                 if ((label1.Location.Y < Circle.Y + Circle.Height) && (label1.Location.Y > Circle.Y))
                 {
-                    label3.Text = "Красный круг";
-                    
-                    label1.Text = "Красный";
+                    label5.Text = "Это круг";
+                    CircleClicked = false;
                 }
             }
+            /*if ((CircleClicked && SquareClicked && RectangleClicked))
+            {
+                label5.Text = "Молодец, ты умный";
+            }*/
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -82,7 +75,7 @@ namespace LabLappolainen3
             CircleClicked = false;
             SquareClicked = false;
 
-            if (LastClicked == 2)
+            /*if (LastClicked == 2)
             {
                 if((label2.Location.X < Circle.X + Circle.Width)&&(label2.Location.X > Circle.X))
                 {
@@ -147,7 +140,7 @@ namespace LabLappolainen3
                         SquareY3 = dY;
                     }
                 }
-            }
+            }*/
         }
 
         private void PictureBox1_MouseDown_1(object sender, MouseEventArgs e)
@@ -155,9 +148,9 @@ namespace LabLappolainen3
 
         }
 
-             Rectangle Rectangle = new Rectangle(10, 10, 200, 100);
-            Rectangle Circle = new Rectangle(220,10,150,150);
-            Rectangle Square = new Rectangle(380,10,150,150);
+        Rectangle Rectangle = new Rectangle(10, 10, 200, 100);
+        Rectangle Circle = new Rectangle(220, 10, 150, 150);
+        Rectangle Square = new Rectangle(380, 10, 150, 150);
         public Form1()
         {
             InitializeComponent();
@@ -166,15 +159,15 @@ namespace LabLappolainen3
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if ((e.X < Rectangle.X + Rectangle.Width)&&(e.X> Rectangle.X))
+            if ((e.X < Rectangle.X + Rectangle.Width) && (e.X > Rectangle.X))
             {
-                if ((e.Y < Rectangle.Y + Rectangle.Height)&&(e.Y > Rectangle.Y))
+                if ((e.Y < Rectangle.Y + Rectangle.Height) && (e.Y > Rectangle.Y))
                 {
                     RectangleClicked = true;
-                    
+
                     RectangleX = e.X - Rectangle.X;
                     RectangleY = e.Y - Rectangle.Y;
-                    LastClicked = 1;
+                    //LastClicked = 1;
                 }
             }
             if ((e.X < Circle.X + Circle.Width) && (e.X > Circle.X))
@@ -185,7 +178,7 @@ namespace LabLappolainen3
 
                     CircleX2 = e.X - Circle.X;
                     CircleY2 = e.Y - Circle.Y;
-                    LastClicked = 2;
+                    //LastClicked = 2;
                 }
             }
             if ((e.X < Square.X + Square.Width) && (e.X > Square.X))
@@ -196,14 +189,14 @@ namespace LabLappolainen3
 
                     SquareX3 = e.X - Square.X;
                     SquareY3 = e.Y - Square.Y;
-                    LastClicked = 3;
+                    //LastClicked = 3;
                 }
             }
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
