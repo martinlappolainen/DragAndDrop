@@ -11,13 +11,21 @@ namespace LabLappolainen3
         int LastClicked = 0*/
         bool RectangleClicked, CircleClicked, SquareClicked = false;
         int RectangleX, CircleX2, SquareX3, RectangleY, CircleY2, SquareY3 = 0;
+        private Random Rand = new Random();
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillEllipse(Brushes.Red, Circle);
-            e.Graphics.FillRectangle(Brushes.Green, Square);
-            e.Graphics.FillRectangle(Brushes.Yellow, Rectangle);
-            
+            Color color = Color.FromArgb(255,
+           255 * Rand.Next(2),
+           255 * Rand.Next(2),
+           255 * Rand.Next(2));
+
+            using (Brush brush = new SolidBrush(color))
+            {
+                e.Graphics.FillEllipse(brush, Circle);
+                e.Graphics.FillRectangle(Brushes.Green, Square);
+                e.Graphics.FillRectangle(Brushes.Yellow, Rectangle);
+            }
         }
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -46,7 +54,7 @@ namespace LabLappolainen3
                 if ((label2.Location.Y < Square.Y + Square.Height) && (label2.Location.Y > Square.Y))
                 {
                     label5.Text = "Молодец ты выбрал правильную фигуру";
-                    
+
                     Square.X = 300;
                     Square.Y = 349;
                     SquareClicked = false;
@@ -59,7 +67,7 @@ namespace LabLappolainen3
                     label5.Text = "Молодец ты выбрал правильную фигуру";
                     Rectangle.X = 546;
                     Rectangle.Y = 349;
-                
+
                     RectangleClicked = false;
                 }
             }
@@ -70,7 +78,7 @@ namespace LabLappolainen3
                     label5.Text = "Молодец ты выбрал правильную фигуру";
                     Circle.X = 83;
                     Circle.Y = 349;
-                    
+
                     CircleClicked = false;
                 }
             }
@@ -142,7 +150,7 @@ namespace LabLappolainen3
             RectangleClicked = false;
             CircleClicked = false;
             SquareClicked = false;
-            
+
 
             /*if (LastClicked == 2)
             {
@@ -226,12 +234,12 @@ namespace LabLappolainen3
         {
 
         }
-        private Random rnd = new Random();
+        
 
-
+        
         Rectangle Rectangle = new Rectangle(10, 10, 200, 100);
         Rectangle Circle = new Rectangle(220, 10, 150, 150);
-        Rectangle Square = new Rectangle(380, 10, 150, 150);
+        Rectangle Square = new Rectangle(380, 10, 150, 150); 
         public Form1()
         {
             InitializeComponent();
@@ -243,6 +251,8 @@ namespace LabLappolainen3
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            
+
             if ((e.X < Rectangle.X + Rectangle.Width) && (e.X > Rectangle.X))
             {
                 if ((e.Y < Rectangle.Y + Rectangle.Height) && (e.Y > Rectangle.Y))
